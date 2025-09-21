@@ -1,0 +1,85 @@
+{
+  "dimensionName": "Free Soccer Dimension",
+  "continents": [
+    {
+      "id": "cont_fsn",
+      "name": "Free Soccer Nations",
+      "countries": [
+        {
+          "id": "country_fst",
+          "name": "Free Soccer Team",
+          "reputation": 85,
+          "leagues": [
+            {
+              "id": "liga_fs",
+              "name": "Liga FS",
+              "reputation": 90,
+              "clubs": [
+                {
+                  "id": "club_sme",
+                  "name": "SC Esmeraldas",
+                  "logo": "assets/images/logos/clubes/sc_esmeraldas.png",
+                  "money": 12500000,
+                  "reputation": 82,
+                  "stadium": { "name": "Estadio Esmeralda", "level": 1, "capacity": 25000 },
+                  "players": [
+                    { "id": 1, "name": "A. Vargas", "age": 25, "dorsal": 1, "naturalPositions": ["POR"], "position": "POR", "rating": 80, "stats": { "Resistencia": 80, "Reflejos": 82, "Estirada": 80, "Paradas": 85, "Saques": 75, "Colocación": 78, "Potencia": 60, "Definición": 20, "Pase": 65, "Velocidad": 55, "Entradas": 25, "Marcaje": 20 } },
+                    { "id": 4, "name": "J. Pineda", "age": 30, "dorsal": 2, "naturalPositions": ["DEF"], "position": "DEF", "rating": 81, "stats": { "Resistencia": 85, "Velocidad": 72, "Entradas": 84, "Marcaje": 83, "Cabeceo": 83, "Pase": 68, "Potencia": 60, "Definición": 45, "Reflejos": 15, "Paradas": 15 } },
+                    { "id": 3, "name": "M. Rojas", "age": 22, "dorsal": 3, "naturalPositions": ["DEF"], "position": "DEF", "rating": 76, "stats": { "Resistencia": 78, "Velocidad": 80, "Entradas": 79, "Marcaje": 75, "Cabeceo": 70, "Pase": 65, "Potencia": 55, "Definición": 40, "Reflejos": 15, "Paradas": 15 } },
+                    { "id": 2, "name": "L. Acosta", "age": 28, "dorsal": 4, "naturalPositions": ["DEF"], "position": "DEF", "rating": 79, "stats": { "Resistencia": 82, "Velocidad": 75, "Entradas": 82, "Marcaje": 80, "Cabeceo": 78, "Pase": 67, "Potencia": 58, "Definición": 42, "Reflejos": 15, "Paradas": 15 } },
+                    { "id": 6, "name": "F. Campos", "age": 26, "dorsal": 6, "naturalPositions": ["MED"], "position": "MED", "rating": 82, "stats": { "Resistencia": 88, "Visión": 85, "Pase": 88, "Dribling": 83, "Control": 85, "Entradas": 70, "Definición": 72, "Potencia": 75, "Reflejos": 15, "Paradas": 15 } },
+                    { "id": 8, "name": "E. Núñez", "age": 21, "dorsal": 8, "naturalPositions": ["MED"], "position": "MED", "rating": 84, "stats": { "Resistencia": 84, "Visión": 86, "Pase": 85, "Dribling": 88, "Control": 87, "Entradas": 68, "Definición": 78, "Potencia": 80, "Reflejos": 15, "Paradas": 15 } },
+                    { "id": 9, "name": "S. 'El Mago' Díaz", "age": 31, "dorsal": 10, "naturalPositions": ["MED"], "position": "MED", "rating": 85, "stats": { "Resistencia": 75, "Visión": 91, "Pase": 92, "Dribling": 92, "Control": 90, "Entradas": 55, "Definición": 82, "Potencia": 81, "Reflejos": 15, "Paradas": 15 } },
+                    { "id": 7, "name": "R. Soto", "age": 24, "dorsal": 14, "naturalPositions": ["MED"], "position": "MED", "rating": 78, "stats": { "Resistencia": 86, "Visión": 80, "Pase": 82, "Dribling": 80, "Control": 81, "Entradas": 72, "Definición": 68, "Potencia": 74, "Reflejos": 15, "Paradas": 15 } },
+                    { "id": 11, "name": "D. Herrera", "age": 23, "dorsal": 7, "naturalPositions": ["DEL"], "position": "DEL", "rating": 80, "stats": { "Resistencia": 83, "Definición": 83, "Potencia": 82, "Velocidad": 90, "Desmarque": 81, "Pase": 70, "Dribling": 82, "Entradas": 40, "Reflejos": 15, "Paradas": 15 } },
+                    { "id": 10, "name": "G. Torres", "age": 29, "dorsal": 9, "naturalPositions": ["DEL"], "position": "DEL", "rating": 83, "stats": { "Resistencia": 81, "Definición": 86, "Potencia": 85, "Velocidad": 88, "Desmarque": 84, "Pase": 72, "Dribling": 79, "Entradas": 42, "Reflejos": 15, "Paradas": 15 } },
+                    { "id": 12, "name": "C. Mendoza", "age": 27, "dorsal": 11, "naturalPositions": ["DEL"], "position": "DEL", "rating": 79, "stats": { "Resistencia": 80, "Definición": 81, "Potencia": 80, "Velocidad": 86, "Desmarque": 79, "Pase": 68, "Dribling": 81, "Entradas": 38, "Reflejos": 15, "Paradas": 15 } }
+                  ],
+                  "substitutes": [
+                    { "id": 13, "name": "P. Reyes", "age": 20, "dorsal": 23, "naturalPositions": ["POR"], "position": "POR", "rating": 70, "stats": { "Resistencia": 75, "Reflejos": 75, "Estirada": 72, "Paradas": 68, "Saques": 65, "Colocación": 70, "Potencia": 50, "Definición": 15, "Pase": 55, "Velocidad": 50, "Entradas": 20, "Marcaje": 18 } },
+                    { "id": 5, "name": "I. Castillo", "age": 24, "dorsal": 15, "naturalPositions": ["DEF"], "position": "DEF", "rating": 75, "stats": { "Resistencia": 80, "Velocidad": 77, "Entradas": 78, "Marcaje": 76, "Cabeceo": 72, "Pase": 60, "Potencia": 50, "Definición": 35, "Reflejos": 15, "Paradas": 15 } },
+                    { "id": 15, "name": "V. Morales", "age": 18, "dorsal": 25, "naturalPositions": ["DEF"], "position": "DEF", "rating": 72, "stats": { "Resistencia": 75, "Velocidad": 78, "Entradas": 75, "Marcaje": 70, "Cabeceo": 68, "Pase": 58, "Potencia": 48, "Definición": 33, "Reflejos": 15, "Paradas": 15 } },
+                    { "id": 14, "name": "O. Flores", "age": 25, "dorsal": 16, "naturalPositions": ["MED"], "position": "MED", "rating": 74, "stats": { "Resistencia": 82, "Visión": 77, "Pase": 78, "Dribling": 76, "Control": 75, "Entradas": 65, "Definición": 64, "Potencia": 70, "Reflejos": 15, "Paradas": 15 } },
+                    { "id": 50, "name": "A. Peña", "age": 22, "dorsal": 18, "naturalPositions": ["MED"], "position": "MED", "rating": 73, "stats": { "Resistencia": 79, "Visión": 75, "Pase": 79, "Dribling": 78, "Control": 72, "Entradas": 66, "Definición": 62, "Potencia": 68, "Reflejos": 15, "Paradas": 15 } },
+                    { "id": 51, "name": "F. Guerrero", "age": 20, "dorsal": 20, "naturalPositions": ["DEL"], "position": "DEL", "rating": 71, "stats": { "Resistencia": 77, "Definición": 74, "Potencia": 70, "Velocidad": 85, "Desmarque": 75, "Pase": 60, "Dribling": 76, "Entradas": 35, "Reflejos": 15, "Paradas": 15 } },
+                    { "id": 52, "name": "B. Lara", "age": 28, "dorsal": 19, "naturalPositions": ["DEL"], "position": "DEL", "rating": 75, "stats": { "Resistencia": 76, "Definición": 78, "Potencia": 79, "Velocidad": 76, "Desmarque": 74, "Pase": 65, "Dribling": 75, "Entradas": 33, "Reflejos": 15, "Paradas": 15 } }
+                  ]
+                },
+                {
+                  "id": "club_riv",
+                  "name": "Atlético Riveiro",
+                  "logo": "assets/images/logos/clubes/atl_riveiro.png",
+                  "money": 11000000,
+                  "reputation": 81,
+                  "stadium": { "name": "Fortaleza de Riveiro", "level": 1, "capacity": 22500 },
+                  "players": [
+                    { "id": 16, "name": "B. Gómez", "age": 32, "dorsal": 1, "naturalPositions": ["POR"], "position": "POR", "rating": 82, "stats": { "Resistencia": 81, "Reflejos": 88, "Estirada": 85, "Paradas": 82, "Saques": 78, "Colocación": 84, "Potencia": 62, "Definición": 22, "Pase": 68, "Velocidad": 58, "Entradas": 28, "Marcaje": 22 } },
+                    { "id": 19, "name": "T. Giménez", "age": 29, "dorsal": 4, "naturalPositions": ["DEF"], "position": "DEF", "rating": 80, "stats": { "Resistencia": 84, "Velocidad": 74, "Entradas": 83, "Marcaje": 82, "Cabeceo": 82, "Pase": 70, "Potencia": 65, "Definición": 48, "Reflejos": 15, "Paradas": 15 } },
+                    { "id": 17, "name": "S. Luna", "age": 26, "dorsal": 2, "naturalPositions": ["DEF"], "position": "DEF", "rating": 78, "stats": { "Resistencia": 81, "Velocidad": 76, "Entradas": 81, "Marcaje": 78, "Cabeceo": 77, "Pase": 68, "Potencia": 60, "Definición": 45, "Reflejos": 15, "Paradas": 15 } },
+                    { "id": 18, "name": "A. Ortiz", "age": 24, "dorsal": 3, "naturalPositions": ["DEF"], "position": "DEF", "rating": 76, "stats": { "Resistencia": 79, "Velocidad": 79, "Entradas": 78, "Marcaje": 76, "Cabeceo": 71, "Pase": 66, "Potencia": 58, "Definición": 41, "Reflejos": 15, "Paradas": 15 } },
+                    { "id": 21, "name": "H. Benítez", "age": 27, "dorsal": 6, "naturalPositions": ["MED"], "position": "MED", "rating": 81, "stats": { "Resistencia": 85, "Visión": 84, "Pase": 85, "Dribling": 82, "Control": 83, "Entradas": 72, "Definición": 75, "Potencia": 78, "Reflejos": 15, "Paradas": 15 } },
+                    { "id": 22, "name": "M. Ponce", "age": 22, "dorsal": 8, "naturalPositions": ["MED"], "position": "MED", "rating": 83, "stats": { "Resistencia": 90, "Visión": 85, "Pase": 86, "Dribling": 87, "Control": 86, "Entradas": 70, "Definición": 79, "Potencia": 81, "Reflejos": 15, "Paradas": 15 } },
+                    { "id": 23, "name": "F. 'La Roca' Vega", "age": 33, "dorsal": 10, "naturalPositions": ["MED"], "position": "MED", "rating": 84, "stats": { "Resistencia": 76, "Visión": 82, "Pase": 84, "Dribling": 78, "Control": 85, "Entradas": 78, "Definición": 76, "Potencia": 83, "Reflejos": 15, "Paradas": 15 } },
+                    { "id": 24, "name": "R. Cabrera", "age": 25, "dorsal": 14, "naturalPositions": ["MED"], "position": "MED", "rating": 79, "stats": { "Resistencia": 83, "Visión": 81, "Pase": 82, "Dribling": 81, "Control": 80, "Entradas": 74, "Definición": 70, "Potencia": 75, "Reflejos": 15, "Paradas": 15 } },
+                    { "id": 25, "name": "L. Paredes", "age": 28, "dorsal": 9, "naturalPositions": ["DEL"], "position": "DEL", "rating": 84, "stats": { "Resistencia": 82, "Definición": 87, "Potencia": 86, "Velocidad": 89, "Desmarque": 85, "Pase": 75, "Dribling": 84, "Entradas": 45, "Reflejos": 15, "Paradas": 15 } },
+                    { "id": 27, "name": "E. Bravo", "age": 30, "dorsal": 11, "naturalPositions": ["DEL"], "position": "DEL", "rating": 81, "stats": { "Resistencia": 80, "Definición": 82, "Potencia": 83, "Velocidad": 87, "Desmarque": 81, "Pase": 72, "Dribling": 80, "Entradas": 40, "Reflejos": 15, "Paradas": 15 } },
+                    { "id": 26, "name": "J. Rios", "age": 21, "dorsal": 7, "naturalPositions": ["DEL"], "position": "DEL", "rating": 78, "stats": { "Resistencia": 85, "Definición": 80, "Potencia": 78, "Velocidad": 88, "Desmarque": 80, "Pase": 70, "Dribling": 81, "Entradas": 38, "Reflejos": 15, "Paradas": 15 } }
+                  ],
+                  "substitutes": [
+                    { "id": 28, "name": "G. Silva", "age": 19, "dorsal": 22, "naturalPositions": ["POR"], "position": "POR", "rating": 69, "stats": { "Resistencia": 72, "Reflejos": 74, "Estirada": 70, "Paradas": 68, "Saques": 62, "Colocación": 66, "Potencia": 52, "Definición": 18, "Pase": 58, "Velocidad": 52, "Entradas": 22, "Marcaje": 20 } },
+                    { "id": 20, "name": "N. Romero", "age": 20, "dorsal": 5, "naturalPositions": ["DEF"], "position": "DEF", "rating": 71, "stats": { "Resistencia": 74, "Velocidad": 76, "Entradas": 74, "Marcaje": 70, "Cabeceo": 67, "Pase": 55, "Potencia": 45, "Definición": 30, "Reflejos": 15, "Paradas": 15 } },
+                    { "id": 60, "name": "C. Navarro", "age": 25, "dorsal": 13, "naturalPositions": ["DEF"], "position": "DEF", "rating": 74, "stats": { "Resistencia": 77, "Velocidad": 78, "Entradas": 76, "Marcaje": 74, "Cabeceo": 72, "Pase": 62, "Potencia": 55, "Definición": 38, "Reflejos": 15, "Paradas": 15 } },
+                    { "id": 29, "name": "D. Sosa", "age": 23, "dorsal": 15, "naturalPositions": ["MED"], "position": "MED", "rating": 75, "stats": { "Resistencia": 80, "Visión": 78, "Pase": 79, "Dribling": 77, "Control": 76, "Entradas": 68, "Definición": 66, "Potencia": 72, "Reflejos": 15, "Paradas": 15 } },
+                    { "id": 61, "name": "P. Guzmán", "age": 19, "dorsal": 24, "naturalPositions": ["MED"], "position": "MED", "rating": 70, "stats": { "Resistencia": 78, "Visión": 74, "Pase": 76, "Dribling": 75, "Control": 71, "Entradas": 62, "Definición": 60, "Potencia": 65, "Reflejos": 15, "Paradas": 15 } },
+                    { "id": 30, "name": "M. Castro", "age": 18, "dorsal": 27, "naturalPositions": ["DEL"], "position": "DEL", "rating": 73, "stats": { "Resistencia": 79, "Definición": 75, "Potencia": 72, "Velocidad": 82, "Desmarque": 74, "Pase": 62, "Dribling": 78, "Entradas": 30, "Reflejos": 15, "Paradas": 15 } },
+                    { "id": 62, "name": "K. Salgado", "age": 26, "dorsal": 17, "naturalPositions": ["DEL"], "position": "DEL", "rating": 76, "stats": { "Resistencia": 78, "Definición": 79, "Potencia": 78, "Velocidad": 80, "Desmarque": 77, "Pase": 68, "Dribling": 76, "Entradas": 35, "Reflejos": 15, "Paradas": 15 } }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

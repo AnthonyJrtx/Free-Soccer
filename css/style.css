@@ -1,0 +1,364 @@
+/* 
+================================================
+HOJA DE ESTILOS v12 (COMPLETA Y ACTUALIZADA)
+================================================
+*/
+
+/* --- 1. DEFINICIÓN DE FUENTE Y VARIABLES --- */
+@font-face { 
+    font-family: 'Akira Expanded'; 
+    src: url('../assets/Akira Expanded Demo.otf') format('opentype'); 
+}
+:root { 
+    --font-title: 'Akira Expanded', sans-serif; 
+    --font-body: 'Roboto', sans-serif; 
+    --color-bg-deep: #02040a; 
+    --color-primary-accent: #00aaff; 
+    --color-secondary-accent: #ff2a6d; 
+    --color-glow: rgba(0, 170, 255, 0.7); 
+    --color-text-primary: #f0f8ff; 
+    --color-text-secondary: #a0b0c0; 
+    --left-margin: 60px; 
+}
+
+/* --- 2. FONDO Y BODY --- */
+body { 
+    background-color: var(--color-bg-deep); 
+    overflow: hidden; 
+    position: relative; 
+    font-family: var(--font-body); 
+    color: var(--color-text-primary); 
+}
+.background-effects { 
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; 
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%23101828' fill-opacity='0.4'%3E%3Cpath d='M0 38.59l2.83-2.83 1.41 1.41L1.41 40H0v-1.41zM0 1.4l2.83 2.83 1.41-1.41L1.41 0H0v1.41zM38.59 40l-2.83-2.83 1.41-1.41L40 38.59V40h-1.41zM40 1.41l-2.83 2.83-1.41-1.41L38.59 0H40v1.41z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E"); 
+    animation: hex-pan 30s linear infinite; 
+}
+.background-effects::after { 
+    content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; 
+    background: linear-gradient(to bottom, rgba(16,24,40,0) 0%, rgba(16,24,40,0.5) 50%, rgba(16,24,40,0) 100%); 
+    animation: scanline 8s linear infinite; 
+}
+
+/* --- 3. LIENZO VIRTUAL Y CONTENEDOR PRINCIPAL --- */
+#app-wrapper { 
+    position: absolute; top: 0; left: 0; 
+    width: 1280px; height: 720px; 
+    transform-origin: 0 0; background-color: transparent; 
+}
+#game-container { 
+    width: 100%; height: 100%; 
+    display: flex; justify-content: center; align-items: center; 
+}
+.screen { 
+    width: 100%; height: 100%; 
+    display: flex; flex-direction: column; 
+    justify-content: flex-start; align-items: stretch; 
+    padding: 40px 0; 
+    animation: screen-fade-in 0.8s ease-out; 
+}
+#splash-screen { 
+    justify-content: center; align-items: center; 
+    background: var(--color-bg-deep); 
+}
+#splash-screen .splash-logo { 
+    max-width: 60%; max-height: 60%; 
+    animation: splash-fade-in 1.5s ease-out forwards; 
+}
+
+/* --- 4. TÍTULOS Y TEXTOS --- */
+.menu-title { 
+    font-family: var(--font-title); 
+    font-size: 70px; 
+    text-transform: uppercase; text-align: center; 
+    width: 100%; margin: 0; 
+    padding: 0 var(--left-margin); 
+    text-shadow: 0 0 8px #fff, 0 0 15px var(--color-glow), 0 0 25px var(--color-glow); 
+    animation: title-flicker 4s infinite alternate; 
+    white-space: nowrap; 
+}
+.impressive-title { 
+    animation: impressive-title-intro 1s forwards cubic-bezier(0.25, 1, 0.5, 1), title-flicker 4s 1s infinite alternate; 
+}
+
+/* --- 5. BOTONES Y MENÚS DE LISTA --- */
+.menu-options-container { 
+    display: flex; flex-direction: column; 
+    align-items: flex-start; gap: 15px; 
+    width: 100%; padding-left: var(--left-margin); 
+    position: relative; margin-top: 50px; 
+}
+.menu-options-container::before { 
+    content: ''; position: absolute; 
+    left: calc(var(--left-margin) - 20px); 
+    top: -10px; bottom: -10px; width: 4px; 
+    background: var(--color-primary-accent); 
+    box-shadow: 0 0 10px var(--color-glow), 0 0 20px var(--color-glow); 
+    border-radius: 2px; 
+}
+.list-container { max-height: 350px; overflow-y: auto; padding-right: 20px; }
+.menu-button { 
+    background: rgba(16, 24, 40, 0.5); 
+    border: 2px solid rgba(255, 255, 255, 0.2); 
+    color: var(--color-text-secondary); 
+    font-family: var(--font-body); font-size: 18px; font-weight: 700; 
+    width: 400px; padding: 15px 40px; 
+    text-transform: uppercase; cursor: pointer; 
+    position: relative; overflow: hidden; 
+    transform: skewX(-20deg); 
+    transition: all 0.4s; 
+    opacity: 0; animation: button-enter 0.5s forwards cubic-bezier(0.25, 1, 0.5, 1); 
+}
+.menu-button:nth-child(1) { animation-delay: 0.2s; } 
+.menu-button:nth-child(2) { animation-delay: 0.3s; } 
+.menu-button:nth-child(3) { animation-delay: 0.4s; } 
+.menu-button:nth-child(4) { animation-delay: 0.5s; }
+.menu-button span { display: inline-block; transform: skewX(20deg); }
+.menu-button::before { 
+    content: ''; position: absolute; top: 0; left: 0; 
+    width: 100%; height: 100%; 
+    background-color: var(--color-primary-accent); 
+    transform: translateX(-105%); 
+    transition: transform 0.4s cubic-bezier(0.19, 1, 0.22, 1); 
+    z-index: -1; 
+}
+.menu-button:hover:not(:disabled) { border-color: var(--color-primary-accent); color: white; }
+.menu-button:hover:not(:disabled)::before { transform: translateX(0); }
+.menu-button:disabled { cursor: not-allowed; opacity: 0.6 !important; }
+.back-button { margin-top: 20px; background: rgba(40, 20, 30, 0.5); }
+.back-button::before { background-color: var(--color-secondary-accent); }
+.back-button:hover:not(:disabled) { border-color: var(--color-secondary-accent); }
+
+/* --- 6. CONTENIDO GENÉRICO Y NAVEGACIÓN --- */
+.hub-navigation { 
+    margin-top: auto; 
+    padding: 20px 0 0 var(--left-margin); 
+    align-self: flex-start; 
+    display: flex; 
+}
+
+/* --- 7. ANIMACIONES --- */
+@keyframes screen-fade-in { from { opacity: 0; } to { opacity: 1; } }
+@keyframes splash-fade-in { from { opacity: 0; transform: scale(0.8); } to { opacity: 1; transform: scale(1); } }
+@keyframes title-flicker { 0% { opacity: 0.9; } 100% { opacity: 1; text-shadow: 0 0 8px #fff, 0 0 18px var(--color-glow), 0 0 30px var(--color-glow); }}
+@keyframes impressive-title-intro { from { opacity: 0; letter-spacing: -10px; transform: translateY(50px); } to { opacity: 1; letter-spacing: 3px; transform: translateY(0); }}
+@keyframes hex-pan { from { background-position: 0 0; } to { background-position: -120px -120px; } }
+@keyframes scanline { from { top: -100%; } to { top: 100%; } }
+@keyframes button-enter { from { opacity: 0; transform: skewX(-20deg) translateX(-50px); } to { opacity: 1; transform: skewX(-20deg) translateX(0); } }
+@keyframes card-fade-in { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes slideInUp { from { transform: translateY(50px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+@keyframes slideInFromLeft { from { transform: translateX(-100px); opacity: 0; } to { transform: translateX(0); opacity: 1; }}
+@keyframes slideInFromRight { from { transform: translateX(100px); opacity: 0; } to { transform: translateX(0); opacity: 1; }}
+@keyframes log-fade-in { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes goal-anim {
+    0% { transform: translateY(100px) scale(0.8); opacity: 0; }
+    15% { transform: translateY(0) scale(1); opacity: 1; }
+    85% { transform: translateY(0) scale(1); opacity: 1; }
+    100% { transform: translateY(-100px) scale(0.8); opacity: 0; }
+}
+
+/* --- 8. SELECCIÓN DE EQUIPO (MODO CARRERA) --- */
+.team-grid-container { 
+    flex-grow: 1; 
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); 
+    gap: 25px; padding: 0 50px; overflow-y: auto; margin-top: 30px;
+}
+.team-card { 
+    background-color: rgba(16, 24, 40, 0.6); 
+    border: 2px solid transparent; border-radius: 10px; 
+    padding: 20px; 
+    display: flex; flex-direction: column; align-items: center; justify-content: center; 
+    cursor: pointer; transition: all 0.3s ease; 
+    opacity: 0; animation: card-fade-in 0.5s forwards; 
+}
+.team-card:hover { 
+    transform: translateY(-8px); 
+    border-color: var(--color-primary-accent); 
+    background-color: rgba(0, 170, 255, 0.1); 
+}
+.team-logo { width: 120px; height: 120px; object-fit: contain; margin-bottom: 15px; }
+.team-name { font-size: 16px; font-weight: 700; text-align: center; color: var(--color-text-primary); }
+
+/* --- 9. LAYOUT DEL HUB DEL CLUB --- */
+#team-hub-screen { padding: 30px 40px; }
+.hub-top-bar { display: flex; justify-content: space-between; align-items: center; width: 100%; margin-bottom: 20px; }
+.hub-header { display: flex; align-items: center; gap: 20px; }
+.hub-club-logo { width: 80px; height: 80px; object-fit: contain; }
+.hub-header .menu-title { font-size: 60px; padding: 0; margin: 0; text-align: left; }
+.hub-stats { text-align: right; }
+.stat-label { font-size: 14px; color: var(--color-text-secondary); display: block; }
+.stat-value { font-size: 24px; font-weight: 700; color: var(--color-text-primary); }
+.hub-body { display: flex; flex-grow: 1; gap: 30px; overflow: hidden; }
+.hub-sidebar { display: flex; flex-direction: column; gap: 10px; border-right: 2px solid rgba(255,255,255,0.1); padding-right: 30px; }
+.hub-menu-button { background: none; border: none; color: var(--color-text-secondary); font-size: 20px; font-weight: 700; text-align: left; padding: 10px 15px; cursor: pointer; border-radius: 5px; transition: all 0.3s ease; width: 100%; }
+.hub-menu-button:hover:not(:disabled) { background-color: rgba(255,255,255,0.05); color: var(--color-text-primary); }
+.hub-menu-button.active { background-color: var(--color-primary-accent); color: white; }
+.hub-main-content { flex-grow: 1; overflow-y: auto; padding-left: 10px; display: flex; flex-direction: column; }
+.hub-main-content h2 { font-size: 32px; margin-bottom: 20px; color: var(--color-text-secondary); }
+.hub-main-content p { font-size: 18px; line-height: 1.6; color: var(--color-text-secondary); }
+#team-hub-screen .hub-navigation { padding: 20px 0 0 0; }
+
+/* --- 10. CONTENIDO DEL HUB (PLANTILLA, TÁCTICAS, ETC.) --- */
+.squad-view-container, .strategy-view-container, .dorsal-editor-container { display: flex; flex-direction: column; height: 100%; }
+.squad-tabs { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 20px; }
+.squad-tab-button { background: rgba(255,255,255,0.1); border: 1px solid transparent; color: var(--color-text-secondary); padding: 8px 16px; font-size: 16px; font-weight: 700; border-radius: 5px; cursor: pointer; transition: all 0.3s ease; }
+.squad-tab-button.active { background: var(--color-primary-accent); color: white; border-color: var(--color-primary-accent); }
+.player-roster { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 15px; padding-bottom: 20px; cursor: pointer; }
+.player-card { background: rgba(16, 24, 40, 0.7); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 8px; display: flex; align-items: center; padding: 10px; transition: all 0.3s ease; }
+.player-card:hover { transform: translateY(-5px); background: rgba(0, 170, 255, 0.1); border-color: var(--color-primary-accent); }
+.miniface-img { width: 70px; height: 70px; border-radius: 50%; border: 3px solid var(--color-primary-accent); object-fit: cover; margin-right: 15px; background-color: var(--color-bg-deep); }
+.player-info { display: flex; flex-direction: column; }
+.player-name { font-size: 18px; font-weight: 700; color: var(--color-text-primary); }
+.player-details { font-size: 14px; color: var(--color-text-secondary); }
+.player-position { padding: 3px 8px; border-radius: 4px; color: #000; font-weight: bold; font-size: 12px; }
+.pos-POR { background-color: #f1c40f; } .pos-DEF { background-color: #3498db; } .pos-MED { background-color: #2ecc71; } .pos-DEL { background-color: #e74c3c; }
+.tactic-board-visual { background: linear-gradient(to bottom, #0c5a29, #1a7d3f); border: 3px solid #fff; flex-grow: 1; position: relative; overflow: hidden; }
+.tactic-board-visual::before, .tactic-board-visual::after { content: ''; position: absolute; border: 2px solid rgba(255,255,255,0.2); }
+.tactic-board-visual::before { width: 150px; height: 150px; top: 50%; left: 50%; transform: translate(-50%, -50%); border-radius: 50%; }
+.tactic-board-visual::after { width: 300px; height: 120px; top: -2px; left: 50%; transform: translateX(-50%); border-top: none; border-radius: 0 0 20px 20px; }
+.player-token-visual { position: absolute; width: 90px; display: flex; flex-direction: column; align-items: center; transition: transform 0.3s ease; }
+.player-token-visual:hover { transform: scale(1.1); z-index: 10; }
+.token-miniface { width: 60px; height: 60px; border-radius: 50%; border: 3px solid #fff; object-fit: cover; background-color: var(--color-bg-deep); }
+.token-info { background: rgba(0,0,0,0.6); padding: 2px 8px; border-radius: 5px; margin-top: -10px; text-align: center; }
+.token-name { font-size: 12px; font-weight: bold; } .token-rating { font-size: 14px; font-weight: bold; }
+.pos-DEL .token-rating { color: #e74c3c; } .pos-MED .token-rating { color: #2ecc71; } .pos-DEF .token-rating { color: #3498db; } .pos-POR .token-rating { color: #f1c40f; }
+.token-pos-POR { top: 85%; left: 50%; transform: translateX(-50%); }
+.token-pos-DEF-1 { top: 68%; left: 15%; transform: translateX(-50%); } .token-pos-DEF-2 { top: 72%; left: 40%; transform: translateX(-50%); } .token-pos-DEF-3 { top: 72%; left: 60%; transform: translateX(-50%); } .token-pos-DEF-4 { top: 68%; left: 85%; transform: translateX(-50%); }
+.token-pos-MED-1 { top: 48%; left: 25%; transform: translateX(-50%); } .token-pos-MED-2 { top: 52%; left: 50%; transform: translateX(-50%); } .token-pos-MED-3 { top: 48%; left: 75%; transform: translateX(-50%); }
+.token-pos-DEL-1 { top: 20%; left: 20%; transform: translateX(-50%); } .token-pos-DEL-2 { top: 15%; left: 50%; transform: translateX(-50%); } .token-pos-DEL-3 { top: 20%; left: 80%; transform: translateX(-50%); }
+.hub-submenu-container { max-height: 0; overflow: hidden; transition: max-height 0.4s ease-in-out; }
+.hub-submenu-container.show-submenu { max-height: 100px; }
+.submenu-button { background-color: rgba(255,255,255,0.05) !important; padding-left: 30px !important; }
+.dorsal-editor-list { display: flex; flex-direction: column; gap: 10px; }
+.dorsal-editor-row { display: flex; align-items: center; gap: 15px; background: rgba(255,255,255,0.05); padding: 10px; border-radius: 5px; }
+.dorsal-editor-name { flex-grow: 1; font-size: 16px; }
+.dorsal-editor-input { width: 80px; padding: 5px; font-size: 16px; text-align: center; background: var(--color-bg-deep); color: white; border: 1px solid var(--color-text-secondary); border-radius: 4px; }
+
+/* --- 11. MODAL DE DETALLES DEL JUGADOR --- */
+.modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); backdrop-filter: blur(5px); z-index: 1000; display: flex; justify-content: center; align-items: center; animation: fadeIn 0.3s; }
+.modal-content { background: var(--color-bg-deep); width: 600px; max-height: 90vh; display: flex; flex-direction: column; border-radius: 10px; border: 1px solid var(--color-primary-accent); padding: 20px; position: relative; box-shadow: 0 10px 30px rgba(0,0,0,0.5); animation: slideInUp 0.4s; }
+.modal-close-button { position: absolute; top: 10px; right: 15px; background: none; border: none; font-size: 30px; color: var(--color-text-secondary); cursor: pointer; }
+.modal-header { display: flex; gap: 20px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 15px; }
+.modal-player-miniface { width: 100px; height: 100px; border-radius: 50%; border: 4px solid var(--color-primary-accent); }
+.modal-player-identity { flex-grow: 1; display: flex; flex-direction: column; justify-content: center; }
+.modal-player-name { font-family: var(--font-title); font-size: 32px; margin: 0; }
+.modal-player-tags { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px; }
+.player-role-tag, .player-nationality-tag, .player-foot-tag { background: #555; padding: 3px 8px; border-radius: 4px; font-size: 12px; font-weight: bold; }
+.player-nationality-tag { background: #007bff; } .player-foot-tag { background: #28a745; }
+.player-dorsal-container { display: flex; align-items: center; justify-content: center; padding-left: 20px; }
+.player-dorsal-number { font-family: var(--font-title); font-size: 60px; color: var(--color-text-secondary); line-height: 1; }
+.modal-body { padding-top: 15px; overflow-y: auto; }
+.modal-stat { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px dashed rgba(255,255,255,0.1); font-size: 16px; }
+.modal-stat-value { font-weight: bold; color: var(--color-text-primary); }
+.modal-stat-value.market-value { color: #2ecc71; font-size: 20px; }
+.modal-stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 20px; margin-top: 10px; }
+
+/* --- 12. CREADOR DE DIMENSIONES --- */
+#dimension-creator-screen .creator-step { flex-grow: 1; display: flex; flex-direction: column; height: 100%; display: none; }
+#dimension-creator-screen .creator-step.active-step { display: flex; }
+.creator-subtitle { font-size: 32px; text-align: center; color: var(--color-text-secondary); margin-bottom: 20px; flex-shrink: 0; }
+.creator-scroll-wrapper { flex-grow: 1; overflow-y: auto; padding: 10px 60px; margin-bottom: 20px; border-top: 1px solid rgba(255, 255, 255, 0.1); border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
+.creator-choice-container { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 20px; padding-top: 40px; }
+.creator-choice-container .menu-button { width: 500px; }
+.creator-form { display: flex; flex-direction: column; gap: 15px; max-width: 600px; margin: 0 auto; }
+.creator-form label { font-size: 16px; color: var(--color-text-secondary); font-weight: 700; }
+.creator-form input[type="text"], .creator-form input[type="number"] { padding: 12px; font-size: 18px; background: rgba(16, 24, 40, 0.8); border: 1px solid var(--color-text-secondary); color: var(--color-text-primary); border-radius: 5px; width: 100%; box-sizing: border-box; }
+.creator-form input:focus { outline: none; border-color: var(--color-primary-accent); box-shadow: 0 0 10px var(--color-glow); }
+#dimension-creator-screen .hub-navigation { padding-top: 0; margin-top: auto; padding-left: 60px; padding-bottom: 10px; flex-shrink: 0; }
+#dimension-creator-screen .back-button { margin-top: 0; margin-left: 15px; }
+
+/* --- 13. SELECCIÓN DE EQUIPOS VS --- */
+#team-vs-selection-screen { padding: 40px; }
+.vs-panels-container { display: flex; justify-content: space-between; align-items: stretch; flex-grow: 1; gap: 30px; }
+.vs-panel { width: 25%; background: rgba(16, 24, 40, 0.7); border: 2px solid rgba(255,255,255,0.2); border-radius: 10px; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 20px; transition: all 0.3s ease; }
+.vs-panel.active-selection { border-color: var(--color-primary-accent); box-shadow: 0 0 15px var(--color-glow); }
+.vs-panel-header { font-family: var(--font-title); font-size: 24px; color: var(--color-text-secondary); margin-bottom: 20px; }
+.vs-panel-logo { width: 180px; height: 180px; object-fit: contain; margin-bottom: 20px; }
+.vs-panel-name { font-size: 28px; font-weight: 700; text-align: center; }
+.vs-team-list-container { width: 50%; display: flex; flex-direction: column; }
+.vs-team-list-container .team-grid-container { padding: 0 10px; }
+
+/* --- 14. PANTALLA DE CARGA PRE-PARTIDO --- */
+#pre-match-screen { justify-content: center; align-items: center; gap: 40px; }
+.pre-match-container { display: flex; justify-content: center; align-items: center; width: 100%; gap: 50px; }
+.pre-match-team { display: flex; flex-direction: column; align-items: center; gap: 20px; animation: slideInFromSide 1s forwards; }
+#pre-match-away { animation-name: slideInFromLeft; }
+#pre-match-home { animation-name: slideInFromRight; }
+.pre-match-team img { width: 250px; height: 250px; object-fit: contain; }
+.pre-match-team span { font-family: var(--font-title); font-size: 36px; }
+.pre-match-vs { font-family: var(--font-title); font-size: 80px; color: var(--color-secondary-accent); opacity: 0; animation: fadeIn 1s 0.5s forwards; }
+.pre-match-timer { font-family: var(--font-title); font-size: 100px; opacity: 0; animation: fadeIn 1s 1s forwards; }
+
+/* --- 15. PANTALLA DE SIMULACIÓN Y NOTIFICACIÓN DE GOL --- */
+#match-sim-screen { padding: 20px; gap: 15px; }
+.match-scoreboard { display: flex; justify-content: space-around; align-items: center; background: rgba(0,0,0,0.5); padding: 10px 20px; border-radius: 10px; }
+.team-info { display: flex; align-items: center; gap: 15px; font-size: 24px; font-weight: bold; width: 40%; }
+.team-info.away { justify-content: flex-end; }
+.scoreboard-logo { width: 50px; height: 50px; object-fit: contain; }
+.score-info { text-align: center; }
+#sim-score { font-family: var(--font-title); font-size: 40px; }
+#sim-time { display: block; font-size: 16px; color: var(--color-text-secondary); }
+.match-sim-body { flex-grow: 1; display: flex; gap: 20px; overflow: hidden; }
+.match-pitch { width: 75%; }
+.match-commentary-box { width: 25%; background: rgba(0,0,0,0.3); border-radius: 5px; padding: 15px; display: flex; flex-direction: column-reverse; overflow: hidden; }
+#commentary-log { list-style: none; padding: 0; margin: 0; overflow-y: auto; }
+#commentary-log li { padding: 5px 0; border-bottom: 1px solid rgba(255,255,255,0.1); font-size: 14px; animation: log-fade-in 0.5s; }
+.match-controls { display: flex; justify-content: center; align-items: center; gap: 10px; padding: 10px; }
+.goal-notification-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 2000; display: flex; justify-content: center; align-items: center; pointer-events: none; }
+.goal-notification-content { display: flex; align-items: center; background: rgba(2, 4, 10, 0.85); backdrop-filter: blur(5px); border: 2px solid var(--color-primary-accent); padding: 20px 40px; border-radius: 15px; box-shadow: 0 0 20px var(--color-glow); animation: goal-anim 4.5s forwards ease-out; }
+.goal-club-logo { width: 80px; height: 80px; margin-right: 20px; }
+.goal-info { text-align: left; }
+.goal-scorer-name { font-size: 28px; font-weight: 700; display: block; }
+.goal-minute { font-size: 18px; color: var(--color-text-secondary); }
+.goal-score { font-family: var(--font-title); font-size: 60px; margin-left: 40px; }
+
+/* --- 16. MENÚ DE MEDIO TIEMPO (CON SUSTITUCIONES) --- */
+.half-time-overlay .modal-content { width: 900px; max-width: 90%; }
+.half-time-modal .creator-subtitle { font-size: 40px; }
+.half-time-body { display: flex; gap: 30px; padding: 20px 0; border-top: 1px solid rgba(255,255,255,0.1); border-bottom: 1px solid rgba(255,255,255,0.1); }
+.half-time-section { width: 50%; text-align: center; }
+.half-time-section h3 { font-size: 24px; margin-bottom: 15px; color: var(--color-text-secondary); }
+.tactic-buttons { display: flex; flex-direction: column; align-items: center; gap: 10px; }
+.tactic-buttons .menu-button { width: 250px; transform: skewX(0); opacity: 1; animation: none; }
+.tactic-buttons .menu-button.active { background: var(--color-primary-accent); color: white; border-color: var(--color-primary-accent); }
+#substitutions-area { display: flex; gap: 10px; height: 200px; margin-bottom: 10px; }
+.sub-column { width: 50%; background: rgba(2, 4, 10, 0.5); border-radius: 5px; padding: 5px; }
+.sub-column h4 { margin: 0 0 5px 0; font-size: 16px; color: var(--color-text-secondary); }
+.sub-player-list { list-style: none; padding: 0; margin: 0; height: calc(100% - 25px); overflow-y: auto; }
+.sub-player-item { background: rgba(255,255,255,0.05); padding: 5px 8px; border-radius: 4px; margin-bottom: 5px; cursor: pointer; transition: background-color 0.2s; font-size: 14px; flex-direction: column; align-items: stretch; display: flex; }
+.sub-player-item:hover { background: rgba(255,255,255,0.1); }
+.sub-player-item.selected { background: var(--color-primary-accent); color: white; font-weight: bold; }
+.sub-player-info { display: flex; justify-content: space-between; margin-bottom: 4px; }
+.stamina-bar-container { background-color: #333; border-radius: 5px; height: 8px; width: 100%; overflow: hidden; }
+.stamina-bar { height: 100%; border-radius: 5px; transition: width 0.3s, background-color 0.3s; }
+.stamina-bar.green { background-color: #2ecc71; }
+.stamina-bar.yellow { background-color: #f1c40f; }
+.stamina-bar.red { background-color: #e74c3c; }
+.stamina-bar.black { background-color: #2c3e50; }
+#resume-match-btn { width: 300px; transform: skewX(0); opacity: 1; animation: none; margin-top: 20px; }
+
+/* --- 17. RESUMEN POST-PARTIDO --- */
+#post-match-summary-screen { padding: 40px 60px; gap: 20px; }
+.summary-scoreboard { display: flex; justify-content: space-around; align-items: center; background: rgba(16, 24, 40, 0.7); padding: 20px; border-radius: 10px; }
+.summary-team { display: flex; align-items: center; gap: 20px; width: 35%; }
+.summary-team#summary-home { flex-direction: row-reverse; }
+.summary-team img { width: 100px; height: 100px; object-fit: contain; }
+.summary-team .team-name { font-size: 28px; font-weight: 700; }
+.summary-score { font-family: var(--font-title); font-size: 80px; }
+.summary-events-container { flex-grow: 1; background: rgba(2, 4, 10, 0.5); border-radius: 10px; padding: 20px; overflow-y: auto; }
+.summary-events-container h3 { text-align: center; font-size: 24px; margin-bottom: 15px; color: var(--color-text-secondary); }
+#summary-events-list { list-style: none; padding: 0; margin: 0; }
+#summary-events-list li { display: flex; align-items: center; padding: 10px; font-size: 18px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+.event-minute { font-family: var(--font-title); font-size: 20px; width: 60px; text-align: center; color: var(--color-text-secondary); }
+.event-icon { width: 24px; height: 24px; margin: 0 18px; }
+.event-card { width: 18px; height: 25px; border-radius: 3px; margin: 0 21px; box-shadow: 2px 2px 5px rgba(0,0,0,0.3); }
+.event-card.yellow { background-color: #f1c40f; }
+.event-card.red { background-color: #e74c3c; }
+.event-details { color: var(--color-text-secondary); }
+.event-details strong { color: var(--color-text-primary); font-weight: 700; }
+
+/* --- 18. DECISIÓN DE TIEMPO EXTRA --- */
+.extra-time-overlay .modal-content { width: 600px; }
+.extra-time-text { text-align: center; font-size: 20px; color: var(--color-text-secondary); margin: 20px 0; }
+.extra-time-modal .hub-navigation .menu-button { transform: skewX(0); opacity: 1; animation: none; width: 250px; }
