@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Free Soccer</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="background-effects"></div>
+    <div id="app-wrapper">
+        <div id="game-container">
+            <!-- El contenido dinámico de las plantillas se renderizará aquí -->
+        </div>
+    </div>
+
+    <input type="file" id="import-file-input" accept=".zip,.fsd" style="display: none;">
+
+    <!-- 
+    =====================================================================
+    |                   PLANTILLAS DE PANTALLAS (TEMPLATES)               |
+    =====================================================================
+    -->
+
+    <!-- Plantilla 1: Pantalla de Carga (Splash Screen) -->
+    <template id="splash-screen-template">
+        <div class="screen" id="splash-screen"><img src="assets/images/logo_desarrolladora.png" alt="Logo Desarrolladora" class="splash-logo"></div>
+    </template>
+
+    <!-- Plantilla 2: Menú de Dimensión -->
+    <template id="dimension-menu-template">
+        <div class="screen" id="dimension-menu"><h1 class="menu-title">FREE SOCCER</h1><div class="menu-options-container"><button class="menu-button" data-action="play-dimension"><span>Jugar Dimensión</span></button><button class="menu-button" data-action="create-dimension"><span>Crear Dimensión</span></button><button class="menu-button" data-action="import-dimension"><span>Importar Dimensión</span></button><button class="menu-button" data-action="settings"><span>Opciones</span></button></div></div>
+    </template>
+
+    <!-- Plantilla 3: Selección de Dimensión Guardada -->
+    <template id="select-dimension-template">
+        <div class="screen" id="select-dimension-screen"><h1 class="menu-title impressive-title">SELECCIONAR DIMENSIÓN</h1><div class="menu-options-container list-container"><button class="menu-button list-item" data-dimension-id="default"><span>Free Soccer Dimension</span></button></div><div class="hub-navigation"><button class="menu-button back-button" data-action="back-to-dimension-menu"><span>Volver</span></button></div></div>
+    </template>
+
+    <!-- Plantilla 4: Menú Principal -->
+    <template id="main-menu-template">
+        <div class="screen" id="main-menu"><h1 class="menu-title impressive-title" id="dimension-name-title">DIMENSIÓN FS</h1><div class="menu-options-container"><button class="menu-button" data-action="play-exhibition"><span>Jugar Partido</span></button><button class="menu-button" data-action="career-dt"><span>Modo Carrera DT</span></button><button class="menu-button" data-action="career-president"><span>Modo Carrera Presidente</span></button><button class="menu-button" data-action="online-mode" disabled><span style="display: flex; align-items: center; justify-content: center; gap: 10px;">Modo Online<span style="font-size: 12px; background: #ff2a6d; color: white; padding: 2px 5px; border-radius: 3px; transform: skewX(0deg);">PRONTO</span></span></button></div><div class="hub-navigation"><button class="menu-button back-button" data-action="quit-dimension"><span>Salir</span></button></div></div>
+    </template>
+
+    <!-- Plantilla 5: Selección de Equipo para Modo Carrera -->
+    <template id="team-selection-template">
+        <div class="screen" id="team-selection-screen"><h1 class="menu-title impressive-title">ELIGE TU EQUIPO</h1><div class="team-grid-container" id="team-grid-container"></div><div class="hub-navigation"><button class="menu-button back-button" data-action="back-to-main-menu"><span>Volver</span></button></div></div>
+    </template>
+    
+    <!-- Plantilla 6: Hub del Club -->
+    <template id="team-hub-template">
+        <div class="screen" id="team-hub-screen"><div class="hub-top-bar"><div class="hub-header"><img id="hub-club-logo" src="" alt="Logo del Club" class="hub-club-logo"><h1 id="hub-club-name" class="menu-title"></h1></div><div class="hub-stats"><span class="stat-label">Fondos del Club</span><span id="hub-club-money" class="stat-value"></span></div></div><div class="hub-body"><div class="hub-sidebar"></div><div class="hub-main-content"></div></div><div class="hub-navigation"><button class="menu-button back-button" data-action="back-to-team-selection"><span>Salir del Club</span></button></div></div>
+    </template>
+
+    <!-- Plantilla 7: Modal de Detalles de Jugador -->
+    <template id="player-details-modal-template">
+        <div class="modal-overlay"><div class="modal-content"><button class="modal-close-button">×</button><div class="modal-header"><img src="" class="modal-player-miniface" alt="Miniface"><div class="modal-player-identity"><h2 class="modal-player-name"></h2><div class="modal-player-tags"><span class="player-position-tag"></span><span class="player-role-tag"></span><span class="player-nationality-tag"></span><span class="player-foot-tag"></span></div></div><div class="player-dorsal-container"><span class="player-dorsal-number"></span></div></div><div class="modal-body"><div class="modal-stat"><span>Valor de Mercado</span><span class="modal-stat-value market-value"></span></div><div class="modal-stats-grid"></div></div></div></div>
+    </template>
+
+    <!-- Plantilla 8: Simulación de Partido -->
+    <template id="match-sim-template">
+        <div class="screen" id="match-sim-screen"><div class="match-scoreboard"><div class="team-info home"><img src="" id="sim-home-logo" class="scoreboard-logo" alt="Logo Local"><span id="sim-home-name"></span></div><div class="score-info"><span id="sim-score">0 - 0</span><span id="sim-time">00:00</span></div><div class="team-info away"><span id="sim-away-name"></span><img src="" id="sim-away-logo" class="scoreboard-logo" alt="Logo Visitante"></div></div><div class="match-sim-body"><div class="tactic-board-visual match-pitch" id="match-pitch"></div><div class="match-commentary-box"><ul id="commentary-log"></ul></div></div><div class="match-controls"><button id="sim-action-btn">Pausar</button><span>Velocidad:</span><button data-speed="1">x1</button><button data-speed="2">x2</button><button data-speed="5">x5</button></div></div>
+    </template>
+    
+    <!-- Plantilla 9: Creador de Dimensiones -->
+    <template id="dimension-creator-template">
+        <div class="screen" id="dimension-creator-screen">
+            <h1 class="menu-title impressive-title">CREADOR DE DIMENSIONES</h1>
+            <div class="creator-step active-step" data-step="0"><div class="creator-scroll-wrapper"><h2 class="creator-subtitle">Elige cómo quieres crear tu mundo</h2><div class="creator-choice-container"><button class="menu-button creator-choice-button" data-creation-mode="step-by-step"><span>Creación Guiada</span></button><button class="menu-button creator-choice-button" data-creation-mode="automatic"><span>Generación Automática</span></button></div></div><div class="hub-navigation"><button class="menu-button back-button" data-action="back-to-dimension-menu"><span>Volver al Menú</span></button></div></div>
+            <div class="creator-step" data-step="auto"><h2 class="creator-subtitle">Configuración Automática</h2><div class="creator-scroll-wrapper"><div class="creator-form"><label for="auto-dim-name">Nombre de la Dimensión:</label><input type="text" id="auto-dim-name" placeholder="Ej: Mundo Fútbol Total"><label for="auto-num-continents">Nº Continentes (1-10):</label><input type="number" id="auto-num-continents" value="3" min="1" max="10"><label for="auto-num-countries">Nº Países/Cont. (2-20):</label><input type="number" id="auto-num-countries" value="5" min="2" max="20"><label for="auto-num-leagues">Nº Divisiones/País (1-4):</label><input type="number" id="auto-num-leagues" value="2" min="1" max="4"><label for="auto-num-clubs">Nº Clubes/Div. (8-24):</label><input type="number" id="auto-num-clubs" value="16" min="8" max="24"></div></div><div class="hub-navigation"><button class="menu-button" id="start-auto-generation"><span>Generar y Exportar</span></button><button class="menu-button back-button" data-action="back-to-step-0"><span>Atrás</span></button></div></div>
+            <div class="creator-step" data-step="1"><h2 class="creator-subtitle">Paso 1: Dimensión y Continentes</h2><div class="creator-scroll-wrapper"><div class="creator-form"><label for="manual-dim-name">Nombre de la Dimensión:</label><input type="text" id="manual-dim-name" placeholder="Mi Universo Futbolístico"></div><div id="continents-manager" class="creator-manager-area"></div></div><div class="hub-navigation"><button class="menu-button" data-action="next-step"><span>Siguiente</span></button><button class="menu-button back-button" data-action="back-to-step-0"><span>Atrás</span></button></div></div>
+            <div class="creator-step" data-step="final"><div class="creator-scroll-wrapper"><h2 class="creator-subtitle">¡Creación Completa!</h2><p>Tu dimensión está lista. Compártela con tus amigos o guárdala para más tarde.</p></div><div class="hub-navigation"><button class="menu-button" id="export-dimension-btn"><span>Exportar Dimensión (.fsd)</span></button><button class="menu-button back-button" data-action="back-to-dimension-menu"><span>Volver al Menú</span></button></div></div>
+        </div>
+    </template>
+    
+    <!-- Plantilla 10: Selección de Equipos VS -->
+    <template id="team-vs-selection-template">
+        <div class="screen" id="team-vs-selection-screen"><div class="vs-panels-container"><div class="vs-panel" id="away-team-panel"><div class="vs-panel-header">VISITANTE</div><img src="assets/images/logos/clubes/default.png" class="vs-panel-logo" alt="Logo Visitante"><div class="vs-panel-name">Elige equipo</div></div><div class="vs-team-list-container"><h2 class="creator-subtitle">Elige un equipo</h2><div id="vs-team-list" class="team-grid-container"></div></div><div class="vs-panel" id="home-team-panel"><div class="vs-panel-header">LOCAL</div><img src="assets/images/logos/clubes/default.png" class="vs-panel-logo" alt="Logo Local"><div class="vs-panel-name">Elige equipo</div></div></div><div class="hub-navigation"><button id="start-match-btn" class="menu-button" disabled><span>Empezar Partido</span></button><button class="menu-button back-button" data-action="back-to-main-menu"><span>Volver</span></button></div></div>
+    </template>
+
+    <!-- Plantilla 11: Carga Pre-Partido -->
+    <template id="pre-match-loading-template">
+        <div class="screen" id="pre-match-screen"><div class="pre-match-container"><div class="pre-match-team" id="pre-match-away"><img src="" alt="Logo Visitante"><span></span></div><div class="pre-match-vs">VS</div><div class="pre-match-team" id="pre-match-home"><img src="" alt="Logo Local"><span></span></div></div><div id="pre-match-timer" class="pre-match-timer">5</div></div>
+    </template>
+
+    <!-- Plantilla 12: Notificación de Gol -->
+    <template id="goal-notification-template">
+        <div class="goal-notification-overlay"><div class="goal-notification-content"><img src="" class="goal-club-logo" alt="Logo Club"><div class="goal-info"><span class="goal-scorer-name"></span><span class="goal-minute"></span></div><div class="goal-score"></div></div></div>
+    </template>
+
+    <!-- Plantilla 13: Menú de Medio Tiempo -->
+    <template id="half-time-menu-template">
+        <div class="modal-overlay half-time-overlay">
+            <div class="modal-content half-time-modal">
+                <h2 class="creator-subtitle">MEDIO TIEMPO</h2>
+                <div class="half-time-body">
+                    <div class="half-time-section">
+                        <h3>Tácticas</h3>
+                        <div class="tactic-buttons">
+                            <button class="menu-button tactic-btn" data-mentality="Defensiva"><span>Defensiva</span></button>
+                            <button class="menu-button tactic-btn active" data-mentality="Equilibrada"><span>Equilibrada</span></button>
+                            <button class="menu-button tactic-btn" data-mentality="Ofensiva"><span>Ofensiva</span></button>
+                        </div>
+                    </div>
+                    <div class="half-time-section">
+                        <h3>Sustituciones (<span id="subs-remaining">3</span> restantes)</h3>
+                        <div id="substitutions-area">
+                            <div class="sub-column">
+                                <h4>En el Campo</h4>
+                                <ul id="pitch-players" class="sub-player-list"></ul>
+                            </div>
+                            <div class="sub-column">
+                                <h4>Banquillo</h4>
+                                <ul id="bench-players" class="sub-player-list"></ul>
+                            </div>
+                        </div>
+                        <button id="confirm-sub-btn" class="menu-button" style="width: 250px; transform: skewX(0); opacity: 1; animation: none; margin-top: 10px;" disabled><span>Confirmar Cambio</span></button>
+                    </div>
+                </div>
+                <div class="hub-navigation" style="justify-content: center;">
+                    <button id="resume-match-btn" class="menu-button"><span>Reanudar Partido</span></button>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <!-- Plantilla 14: Resumen Post-Partido -->
+    <template id="post-match-summary-template">
+        <div class="screen" id="post-match-summary-screen">
+            <h1 class="menu-title impressive-title">RESULTADO FINAL</h1>
+            <div class="summary-scoreboard">
+                <div class="summary-team" id="summary-away"><img src="" alt="Logo Visitante"><span class="team-name"></span></div>
+                <div class="summary-score"></div>
+                <div class="summary-team" id="summary-home"><img src="" alt="Logo Local"><span class="team-name"></span></div>
+            </div>
+            <div class="summary-events-container">
+                <h3>Eventos Destacados</h3>
+                <ul id="summary-events-list"></ul>
+            </div>
+            <div class="hub-navigation" style="justify-content: center;">
+                <button class="menu-button" data-action="back-to-main-menu"><span>Continuar</span></button>
+            </div>
+        </div>
+    </template>
+
+    <!-- Plantilla 15: Decisión de Tiempo Extra (NUEVA) -->
+    <template id="extra-time-decision-template">
+        <div class="modal-overlay extra-time-overlay">
+            <div class="modal-content extra-time-modal">
+                <h2 class="creator-subtitle">EMPATE</h2>
+                <p class="extra-time-text">El partido ha terminado en empate. ¿Qué deseas hacer?</p>
+                <div class="hub-navigation" style="justify-content: center; gap: 15px;">
+                    <button class="menu-button" data-decision="extra-time"><span>Ir a Tiempo Extra</span></button>
+                    <button class="menu-button back-button" data-decision="end-draw"><span>Terminar en Empate</span></button>
+                </div>
+            </div>
+        </div>
+    </template>
+
+
+    <!-- ===================== SCRIPTS ===================== -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script src="js/dimension_creator.js"></script>
+    <script src="js/simulation.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        function fitLayoutToWindow() {
+            const VIRTUAL_WIDTH = 1280, VIRTUAL_HEIGHT = 720;
+            const appWrapper = document.getElementById('app-wrapper');
+            const scale = Math.min(window.innerWidth / VIRTUAL_WIDTH, window.innerHeight / VIRTUAL_HEIGHT);
+            const offsetX = (window.innerWidth - (VIRTUAL_WIDTH * scale)) / 2;
+            const offsetY = (window.innerHeight - (VIRTUAL_HEIGHT * scale)) / 2;
+            appWrapper.style.transform = `translate(${offsetX}px, ${offsetY}px) scale(${scale})`;
+        }
+        window.addEventListener('resize', fitLayoutToWindow);
+        document.addEventListener('DOMContentLoaded', fitLayoutToWindow);
+    </script>
+</body>
+</html>
